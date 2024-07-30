@@ -14,5 +14,5 @@ def mask_account_card(card_acc_number: str) -> str:
 def get_data(data_input: str) -> str | None:
     """Преобразование даты"""
     data_ = data_input.split("Т")[0]
-    formated_data = f"{data_[-2:]},{data_[5:7]},{data_[:4]}"
+    formated_data = f"{data_[-2:]}.{data_[5:7]}.{data_[:4]}"
     return formated_data
