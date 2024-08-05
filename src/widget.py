@@ -11,7 +11,7 @@ def mask_account_card(card_acc_number: str) -> str:
         return f"{card_acc_number[:-16]} {src.masks.get_mask_card_number(card_number)}"
 
 
-def get_date(date_input: str) -> str | None:
+def get_date(date_input: str) -> str:
     """Преобразование даты"""
     date_not_formated = date_input.split("Т")[0]
     formated_date = f"{date_not_formated[-2:]}.{date_not_formated[5:7]}.{date_not_formated[:4]}"
