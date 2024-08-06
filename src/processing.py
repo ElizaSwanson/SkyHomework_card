@@ -23,7 +23,7 @@ print(
 )
 
 
-def sort_by_date(state_dict: list[dict[str, any]], reversed_list: bool = True) -> list[dict[str, any]]:
+def sort_by_date(state_dict: list[dict[str, Any]], reversed_list: bool = True) -> list[dict[str, Any]]:
     """в этой функции происходит сортировка словарей по дате"""
     sorted_list = sorted(
         state_dict,
