@@ -1,4 +1,4 @@
-from typing import Any, List, Dict
+from typing import Any
 
 
 def filter_by_state(
@@ -6,8 +6,9 @@ def filter_by_state(
 ) -> list[dict[str, str | Any]]:
     filtered_dict = []
     for data in state_dict:
-        if data.get("state") == state_status:
-            filtered_dict.append(data)
+        for value in data.values():
+            if value == state_status:
+                filtered_dict.append(data)
     return filtered_dict
 
 
