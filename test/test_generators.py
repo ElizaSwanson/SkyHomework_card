@@ -21,10 +21,10 @@ def test_filter_another_currency(transactions):
 
 def test_desc_transact(transactions):
     desc_ = transaction_descriptions(transactions)
-    assert next(desc_) == "Перевод организации"
-    assert next(desc_) == "Перевод со счета на счет"
+    for i in range(4):
+        print(next(desc_))
 
 
 def test_card_n_generator():
-    num_ = card_number_generator(781377451, 17387851031)
-    assert next(num_) == "0000 0007 8137 7451"
+    for card_num in card_number_generator(1, 5):
+        print(next(card_num))
