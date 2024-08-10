@@ -17,10 +17,7 @@ def test_card(user_input, expected):
 
 @pytest.mark.parametrize(
     "user_input, expected",
-    [
-        ("2024-03-11T02:26:18.671407", "11.03.2024"),
-        ("2011-10-31T02:26:18.671407", "31.10.2011")
-    ],
+    [("2024-03-11T02:26:18.671407", "11.03.2024"), ("2011-10-31T02:26:18.671407", "31.10.2011")],
 )
 def test_data(user_input, expected):
     assert get_date(user_input) == expected
