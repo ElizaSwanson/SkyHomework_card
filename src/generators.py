@@ -11,3 +11,19 @@ def filter_by_currency(transactions_list: list, code_of_currency: str = "USD") -
                 raise AssertionError("Такой код не найден")
     if transactions_list == ():
         raise AssertionError("Пустой список")
+
+
+def transaction_descriptions(transactions: list) -> Generator[Any, Any, Any]:
+    """сортировка по описанию операции"""
+    for description in transactions:
+        yield description.get("description")
+    if not description:
+        raise ValueError("Такой транзакции нет")
+
+
+def card_number_generator(start: int, stop: int) -> Generator[str, Any, Any]:
+    """функция для генерации номера карты в заданном промежутке"""
+    for number in range(start, stop + 1):
+        starting_number = "0000000000000000"
+        card_number = starting_number[: -len(str(number))] + str(number)
+        yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
