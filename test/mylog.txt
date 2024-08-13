@@ -1,0 +1,4 @@
+
+ my function error: test_log.<locals>.my_func() missing 1 required positional argument: 'y', inputs: (1,), {} 
+
+ my function is OK
