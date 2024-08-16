@@ -21,7 +21,7 @@ def log(filename: str | None = None) -> Callable:
                         file.write(f"\n my function error: {e}, inputs: {args}, {kwargs} \n")
                 else:
                     print(f"\n my function error: {e}, inputs: {args}, {kwargs} \n")
-            return result
+            return wrapper
 
         return wrapper
 
