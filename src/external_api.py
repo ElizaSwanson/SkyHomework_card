@@ -5,6 +5,7 @@ import requests
 load_dotenv("../.env")
 
 def get_transact_sum(transactions: dict) -> float:
+    """функция конвертирует сумму операций в рубли"""
     code_ = transactions["operationAmount"]["currency"]["code"]
     amount_ = transactions["operationAmount"]["amount"]
     if code_ == "RUB":
