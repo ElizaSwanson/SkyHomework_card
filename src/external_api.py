@@ -1,8 +1,10 @@
 import os
-from dotenv import load_dotenv
+
 import requests
+from dotenv import load_dotenv
 
 load_dotenv("../src/.env")
+
 
 def get_transact_sum(transactions: dict) -> float:
     """функция конвертирует сумму операций в рубли"""
@@ -17,5 +19,3 @@ def get_transact_sum(transactions: dict) -> float:
         response = requests.get(url, headers=headers)
         result = response.json()
         return result
-
-
