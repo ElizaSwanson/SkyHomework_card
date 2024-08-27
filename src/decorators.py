@@ -9,7 +9,6 @@ def log(filename: str | None = None) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
-                result = func(*args, **kwargs)
                 if filename:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(f"\n my function is OK")

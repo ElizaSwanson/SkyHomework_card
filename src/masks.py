@@ -22,8 +22,10 @@ def get_mask_card_number(card_number: str) -> str | None:
         logger_masks.warning("Некорректный номер карты")
         return None
 
+
 print(get_mask_card_number("1234567890123456"))
 print(get_mask_card_number("123456789012133456"))
+
 
 def get_mask_account(acc_number: str) -> str | None:
     """эта функция получает номер банк.счета и возвращает последние 4 цифры"""
@@ -33,6 +35,7 @@ def get_mask_account(acc_number: str) -> str | None:
     else:
         logger_masks.warning("Номер счета некорректный")
         return None
+
 
 print(get_mask_account("123456789012133456"))
 print(get_mask_account("12345678901213345612"))

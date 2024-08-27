@@ -1,8 +1,6 @@
 from test.conftest import transactions
 from typing import Any, Generator
 
-import pytest
-
 
 def filter_by_currency(transactions: list[dict], code_of_currency: str = "USD") -> Generator[Any, Any, Any]:
     """Функция возвращает итератор с заданной валютой"""
