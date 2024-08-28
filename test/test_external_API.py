@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import Mock
 
 import requests
 
@@ -12,10 +12,12 @@ test_data = {
 }
 
 
-@patch("requests.get")
-def test_api(mock_get):
-    mock_get.return_value.json.return_value = "10.0"
-    assert get_transact_sum(test_data) == "10.0"
+def test_api():
+    test_api_mock = Mock(return_value=" ")
+    api_return = test_api_mock
+    assert get_transact_sum(test_data) == " "
+    test_api_mock.assert_called_once_with("  ")
+
 
 def test_api_1():
     print(get_transact_sum(test_data))

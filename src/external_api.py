@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv(".env")
 api_key = os.getenv("API_KEY")
+print(api_key)
 
 
 def get_transact_sum(transactions: dict) -> float:
@@ -16,6 +17,6 @@ def get_transact_sum(transactions: dict) -> float:
     if code_ == "EUR" or "USD":
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={code_}&amount={amount_}"
         headers = {"Api_key": api_key}
-        response = requests.get(url, headers=headers)
+        response = requests.request("GET", url, headers=headers)
         result = response.json()
         return result
