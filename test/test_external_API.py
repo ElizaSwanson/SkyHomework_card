@@ -1,6 +1,4 @@
-from unittest.mock import Mock
-
-import requests
+from unittest.mock import patch
 
 from src.external_api import get_transact_sum
 
@@ -12,13 +10,10 @@ test_data = {
 }
 
 
-def test_api():
-    test_api_mock = Mock(return_value=" ")
-    api_return = test_api_mock
-    assert get_transact_sum(test_data) == " "
-    test_api_mock.assert_called_once_with("  ")
-
-
-
-def test_api_1():
-    print(get_transact_sum(test_data))
+@patch('requests.get')
+def test_return_amount_trans(mock_get):
+    mock_get.return_value.json.return_value = {'result': 906.55322}
+    assert get_transact_sum(test_data) == 906.55322
+    mock_get.assert_called_once()
+    mock_get.assert_called_with('https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=10.0',
+                                headers={'apikey': '6VSAurE9kur7G2761TwmC0bLSLtwQnxu'})
