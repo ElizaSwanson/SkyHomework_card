@@ -18,14 +18,7 @@ def get_transact_sum(transactions: dict) -> float:
         headers = {"apikey": api_key}
         response = requests.get(url, headers=headers)
         result_ = response.json()
-        return result_['result']
-
-
-test_data = {
-    "id": 207126257,
-    "state": "EXECUTED",
-    "date": "2019-07-15T11:47:40.496961",
-    "operationAmount": {"amount": "10.0", "currency": {"name": "USD", "code": "USD"}},
-}
-
-print(get_transact_sum(test_data))
+        if "result" in result_:
+            return result_["result"]
+        else:
+            return None

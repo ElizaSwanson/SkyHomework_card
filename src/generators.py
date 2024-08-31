@@ -1,4 +1,3 @@
-from test.conftest import transactions
 from typing import Any, Generator
 
 
