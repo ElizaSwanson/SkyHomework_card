@@ -2,22 +2,18 @@ import pandas as pd
 import csv
 
 
-def py_read_csv(path: str) -> list:
-    """функция считывает путь до файла csv и возвращает список транзакций"""
-    with open(path, encoding="utf-8") as csv_file:
-        transactions_list = []
-        python_convert = csv.DictReader(csv_file, delimiter=";")
-        for data in python_convert:
-            transactions_list.append(data)
-    return transactions_list
+def reading_xls_csv_files(path: str) -> list[dict]:
+    try:
+        if ".csv" in path[-4:]:
+            data_frame = pd.read_csv(path, delimiter=";")
+            result = data_frame.to_dict(orient="records")
+            return result
+        elif ".xlsx" in path[-5:]:
+            data_frame = pd.read_excel(path)
+            result = data_frame.to_dict(orient="records")
+            return result
+    except FileNotFoundError:
+        return []
 
-
-def read_excel(path: str) -> list:
-    """функция считывает путь до файла эксель и возвращает список транзакций"""
-    to_py_from_exc = pd.read_excel(path)
-    exc_dict = to_py_from_exc.to_dict(orient="records")
-    return exc_dict
-
-
-print(py_read_csv("..\\data\\transactions.csv"))
-# print(read_excel("..\\data\\transactions_excel.xlsx"))
+#print(reading_xls_csv_files("..\\data\\transactions.csv"))
+print(reading_xls_csv_files("..\\data\\transactions_excel.xlsx"))
