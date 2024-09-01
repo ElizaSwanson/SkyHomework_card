@@ -11,7 +11,7 @@ def get_transact_sum(transactions: dict) -> float:
     amount_ = transactions["operationAmount"]["amount"]
     amount_float = float(amount_)
     if code_ == "RUB":
-        return amount_
+        return amount_float
     else:
         api_key = os.getenv("API_KEY")
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={code_}&amount={amount_float}"

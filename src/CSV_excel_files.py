@@ -18,5 +18,6 @@ def read_excel(path: str) -> list:
     exc_dict = to_py_from_exc.to_dict(orient="records")
     return exc_dict
 
-#print(read_csv("..\\data\\transactions.csv"))
-#print(read_excel("..\\data\\transactions_excel.xlsx"))
+
+# print(read_csv("..\\data\\transactions.csv"))
+# print(read_excel("..\\data\\transactions_excel.xlsx"))
