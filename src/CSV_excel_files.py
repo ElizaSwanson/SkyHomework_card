@@ -2,7 +2,7 @@ import pandas as pd
 import csv
 
 
-def read_csv(path: str) -> list:
+def py_read_csv(path: str) -> list:
     """функция считывает путь до файла csv и возвращает список транзакций"""
     with open(path, encoding="utf-8") as csv_file:
         transactions_list = []
@@ -19,5 +19,5 @@ def read_excel(path: str) -> list:
     return exc_dict
 
 
-# print(read_csv("..\\data\\transactions.csv"))
+print(py_read_csv("..\\data\\transactions.csv"))
 # print(read_excel("..\\data\\transactions_excel.xlsx"))

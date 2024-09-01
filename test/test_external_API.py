@@ -44,6 +44,7 @@ def test_return_amount_trans(mock_get, test_data_1):
     }
     assert get_transact_sum(test_data_1) == 905.33737
 
+
 @patch("requests.get")
 def test_rub(mock_get, test_data_2):
     mock_get.return_value.json.return_value = "25780.71"
@@ -59,4 +60,3 @@ def test_return_amount_trans_NONE(mock_get, test_data_3):
         "date": "2024-08-31",
     }
     assert get_transact_sum(test_data_3) == None
-
