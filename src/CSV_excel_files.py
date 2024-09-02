@@ -1,8 +1,8 @@
 import pandas as pd
-import csv
 
 
 def reading_xls_csv_files(path: str) -> list[dict]:
+    """эта функция ищет csv либо excel файлы, считывает их и выводит содержимое"""
     try:
         if ".csv" in path[-4:]:
             data_frame = pd.read_csv(path, delimiter=";")
@@ -14,6 +14,3 @@ def reading_xls_csv_files(path: str) -> list[dict]:
             return result
     except FileNotFoundError:
         return []
-
-#print(reading_xls_csv_files("..\\data\\transactions.csv"))
-print(reading_xls_csv_files("..\\data\\transactions_excel.xlsx"))
