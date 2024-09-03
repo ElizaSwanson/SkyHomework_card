@@ -13,4 +13,4 @@ def reading_xls_csv_files(path: str) -> list[dict]:
             result = data_frame.to_dict(orient="records")
             return result
     except FileNotFoundError:
-        return []
+        return None

@@ -12,7 +12,7 @@ def test_reading_csv(mock_read, test_data_frame):
 
 
 def test_zero():
-    assert reading_xls_csv_files("") == []
+    assert reading_xls_csv_files("") == None
 
 
 @patch("src.CSV_excel_files.pd.read_excel")
