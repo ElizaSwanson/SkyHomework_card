@@ -8,5 +8,6 @@ def test_empty():
 def test_incorrect_path():
     assert get_trans_dictionary(file_path="src.enc") == []
 
+
 def test():
     print(get_trans_dictionary("..\\data\\operations.json"))

@@ -11,9 +11,9 @@ def log(filename: str | None = None) -> Callable:
             try:
                 if filename:
                     with open(filename, "a", encoding="utf-8") as file:
-                        file.write('\n my function is OK')
+                        file.write("\n my function is OK")
                 else:
-                    print('\n my function is OK')
+                    print("\n my function is OK")
             except Exception as e:
                 if filename:
                     with open(filename, "a", encoding="utf-8") as file:

@@ -3,9 +3,7 @@ from collections import Counter
 from typing import Any
 
 
-def filter_by_state(
-    state_dict: list[dict[str, str | Any]], state: str
-) -> list[dict[str, str | Any]]:
+def filter_by_state(state_dict: list[dict[str, str | Any]], state: str) -> list[dict[str, str | Any]]:
     operations: list = [operation for operation in state_dict if operation.get("state") == state.upper()]
     return operations
 

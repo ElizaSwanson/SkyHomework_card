@@ -2,7 +2,6 @@ import pandas as pd
 import pytest
 
 
-
 @pytest.fixture
 def test_data_frame() -> pd.DataFrame:
     """Фикстура, создающая тестовый DataFrame"""

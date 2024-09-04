@@ -74,7 +74,6 @@ def main():
         specific_word = input("Введите слово: ")
         filtered_operations = filter_by_request(filtered_operations, specific_word)
 
-
     print("Распечатываю итоговый список транзакций...")
     if len(filtered_operations) == 0:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
@@ -95,5 +94,5 @@ def main():
             )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
