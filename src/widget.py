@@ -1,17 +1,17 @@
-import src.masks
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_acc_number: str) -> str | None:
     """это функция для маскировки номеров карт и счетов"""
-    if "Счет" in card_acc_number:
-        account_number = card_acc_number[-20:]
-        return f"{card_acc_number[:-20]}{src.masks.get_mask_account(account_number)}"
-    elif "Maestro" in card_acc_number:
-        card_number = "".join(card_acc_number[-16:].split())
-        return f"{card_acc_number[:-16]}{src.masks.get_mask_card_number(card_number)}"
-    elif "Visa" in card_acc_number:
-        card_number = "".join(card_acc_number[-16:].split())
-        return f"{card_acc_number[:-16]}{src.masks.get_mask_card_number(card_number)}"
+    numbers = card_acc_number.split()
+    number = numbers[-1]
+    if "visa" or "maestro" or "счет" in card_acc_number.lower():
+        if card_acc_number.lower().startswith("счет"):
+            masked_number = get_mask_account(number)
+        else:
+            masked_number = get_mask_card_number(number)
+        numbers[-1] = masked_number
+        return " ".join(numbers)
     else:
         return None
 

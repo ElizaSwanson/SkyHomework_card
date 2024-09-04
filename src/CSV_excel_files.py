@@ -1,16 +1,65 @@
 import pandas as pd
+import csv
 
 
-def reading_xls_csv_files(path: str) -> list[dict]:
-    """эта функция ищет csv либо excel файлы, считывает их и выводит содержимое"""
+def get_transactions_csv(csv_path: str) -> list[dict]:
+    """принимает на вход путь до файла csv и возвращает список транзакций"""
+
+    transaction_list = []
     try:
-        if ".csv" in path[-4:]:
-            data_frame = pd.read_csv(path, delimiter=";")
-            result = data_frame.to_dict(orient="records")
-            return result
-        elif ".xlsx" in path[-5:]:
-            data_frame = pd.read_excel(path)
-            result = data_frame.to_dict(orient="records")
-            return result
-    except FileNotFoundError:
-        return None
+        with open(csv_path, encoding="utf-8") as csv_file:
+            reader = csv.reader(csv_file, delimiter=";")
+            next(reader)
+            for row in reader:
+                if row:
+                    id_, state, date, amount, currency_name, currency_code, from_, to, description = row
+                    transaction_list.append(
+                        {
+                            "id": str(id_),
+                            "state": state,
+                            "date": date,
+                            "operationAmount": {
+                                "amount": str(amount),
+                                "currency": {"name": currency_name, "code": currency_code},
+                            },
+                            "description": description,
+                            "from": from_,
+                            "to": to,
+                        }
+                    )
+    except Exception:
+        return []
+    return transaction_list
+
+
+def get_transactions_excel(excel_path: str) -> list[dict]:
+    """принимает на вход путь до файла Excel и возвращает список транзакций"""
+
+    transaction_list = []
+    try:
+        excel_data = pd.read_excel(excel_path)
+        len_, b = excel_data.shape
+        for i in range(len_):
+            if excel_data["id"][i]:
+                transaction_list.append(
+                    {
+                        "id": str(excel_data["id"][i]),
+                        "state": excel_data["state"][i],
+                        "date": excel_data["date"][i],
+                        "operationAmount": {
+                            "amount": str(excel_data["amount"][i]),
+                            "currency": {
+                                "name": excel_data["currency_name"][i],
+                                "code": excel_data["currency_code"][i],
+                            },
+                        },
+                        "description": excel_data["description"][i],
+                        "from": excel_data["from"][i],
+                        "to": excel_data["to"][i],
+                    }
+                )
+            else:
+                continue
+    except Exception:
+        return []
+    return transaction_list

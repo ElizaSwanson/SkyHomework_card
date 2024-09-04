@@ -1,17 +1,13 @@
-from typing import Any
 import re
 from collections import Counter
+from typing import Any
 
 
 def filter_by_state(
-    state_dict: list[dict[str, str | Any]], state_status: str = "EXECUTED"
+    state_dict: list[dict[str, str | Any]], state: str
 ) -> list[dict[str, str | Any]]:
-    filtered_dict = []
-    for data in state_dict:
-        for value in data.values():
-            if value == state_status:
-                filtered_dict.append(data)
-    return filtered_dict
+    operations: list = [operation for operation in state_dict if operation.get("state") == state.upper()]
+    return operations
 
 
 def sort_by_date(state_dict: list[dict[str, Any]], reversed_list: bool = True) -> list[dict[str, Any]]:

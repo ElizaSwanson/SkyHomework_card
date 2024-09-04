@@ -15,7 +15,7 @@ logger_utils.addHandler(masks_handler)
 logger_utils.setLevel(logging.DEBUG)
 
 
-def get_trans_dictionary(file_path: str) -> list[Any]:
+def get_trans_dictionary(file_path: str) -> dict | Any:
     """функция выводит список операций"""
     try:
         with open(file_path, "r", encoding="utf-8") as operations_dict:
@@ -31,7 +31,3 @@ def get_trans_dictionary(file_path: str) -> list[Any]:
         logger_utils.warning("Файл не найден")
         transactions_info = []
         return transactions_info
-
-
-print(get_trans_dictionary("..\\data\\operations.json"))
-print(get_trans_dictionary("nothing"))
