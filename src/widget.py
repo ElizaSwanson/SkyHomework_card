@@ -5,15 +5,12 @@ def mask_account_card(card_acc_number: str) -> str | None:
     """это функция для маскировки номеров карт и счетов"""
     numbers = card_acc_number.split()
     number = numbers[-1]
-    if "visa" or "maestro" or "счет" in card_acc_number.lower():
-        if card_acc_number.lower().startswith("счет"):
-            masked_number = get_mask_account(number)
-        else:
-            masked_number = get_mask_card_number(number)
-        numbers[-1] = masked_number
-        return " ".join(numbers)
+    if card_acc_number.lower().startswith("счет"):
+        masked_number = get_mask_account(number)
     else:
-        return None
+        masked_number = get_mask_card_number(number)
+    numbers[-1] = masked_number
+    return " ".join(numbers)
 
 
 def get_date(date_input: str) -> str:
