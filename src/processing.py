@@ -1,4 +1,6 @@
 from typing import Any
+import re
+from collections import Counter
 
 
 def filter_by_state(
@@ -12,18 +14,6 @@ def filter_by_state(
     return filtered_dict
 
 
-print(
-    filter_by_state(
-        [
-            {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-            {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-            {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-            {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-        ]
-    )
-)
-
-
 def sort_by_date(state_dict: list[dict[str, Any]], reversed_list: bool = True) -> list[dict[str, Any]]:
     """в этой функции происходит сортировка словарей по дате"""
     sorted_list = sorted(
@@ -34,13 +24,22 @@ def sort_by_date(state_dict: list[dict[str, Any]], reversed_list: bool = True) -
     return sorted_list
 
 
-print(
-    sort_by_date(
-        [
-            {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-            {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-            {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-            {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-        ]
-    )
-)
+def filter_by_request(transactions_list: list[dict], user_input: str) -> list[dict]:
+    """функция поиска по заданному слову"""
+    final_list = []
+    lower_user_input = user_input.lower()
+    for transaction in transactions_list:
+        if re.search(lower_user_input, transaction.get("description", ""), flags=re.IGNORECASE):
+            final_list.append(transaction)
+        else:
+            continue
+    return final_list
+
+
+def count_transaction_categories(transactions_list: list[dict]) -> dict:
+    """функция подсчета количества операций по конкретным категориям"""
+    categories_list = []
+    for transaction in transactions_list:
+        categories_list.append(transaction["description"])
+    counted_categs = dict(Counter(categories_list))
+    return counted_categs
