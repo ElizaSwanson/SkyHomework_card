@@ -1,0 +1,25 @@
+
+ my function error: test_log.<locals>.my_func() missing 1 required positional argument: 'y', inputs: (1,), {} 
+
+ my function is OK
+ my function is OK
+ my function is OK
+ my function is OK
+ my function is OK
+ my function error: test_log.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function error: test_log_not_OK.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function is OK
+ my function error: test_log_not_OK.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function is OK
+ my function is OK
+ my function error: test_log_not_OK.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function error: test_log_not_OK.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function error: test_log_not_OK.<locals>.my_func_1() missing 1 required positional argument: 'y', inputs: (9,), {} 
+
+ my function is OK
+ my function is OK

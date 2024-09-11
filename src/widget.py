@@ -1,18 +1,20 @@
-import src.masks
+from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card_acc_number: str) -> str:
+def mask_account_card(card_acc_number: str) -> str | None:
     """это функция для маскировки номеров карт и счетов"""
-    if "Счет" in card_acc_number:
-        account_number = card_acc_number[-20:]
-        return f"{card_acc_number[:-20]} {src.masks.get_mask_account(account_number)}"
+    numbers = card_acc_number.split()
+    number = numbers[-1]
+    if card_acc_number.lower().startswith("счет"):
+        masked_number = get_mask_account(number)
     else:
-        card_number = "".join(card_acc_number[-16:].split())
-        return f"{card_acc_number[:-16]} {src.masks.get_mask_card_number(card_number)}"
+        masked_number = get_mask_card_number(number)
+    numbers[-1] = masked_number
+    return " ".join(numbers)
 
 
-def get_date(date_input: str) -> str | None:
+def get_date(date_input: str) -> str:
     """Преобразование даты"""
     date_not_formated = date_input.split("Т")[0]
-    formated_date = f"{date_not_formated[-2:]}.{date_not_formated[5:7]}.{date_not_formated[:4]}"
+    formated_date = f"{date_not_formated[8:10]}.{date_not_formated[5:7]}.{date_not_formated[:4]}"
     return formated_date
